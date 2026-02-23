@@ -782,9 +782,12 @@ def read_video_frames_with_indices(path: str, max_frames: int = 16, decode_max_s
 # =========================
 app = FastAPI(title="UNMASK Deepfake Detector API", version="2.7")
 
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "").strip()
+origins = ["*"] if not ALLOWED_ORIGINS else [o.strip() for o in ALLOWED_ORIGINS.split(",")]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
