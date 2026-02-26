@@ -187,7 +187,7 @@ export default function HomePage() {
             badge="Student"
             socials={{
               // github: "https://github.com/USERNAME",
-               linkedin: "https://www.linkedin.com/in/USERNAME/",
+               linkedin: "https://www.linkedin.com/in/bahgat-yasser-4090571b8/",
             }}
           />
           <PersonCard
