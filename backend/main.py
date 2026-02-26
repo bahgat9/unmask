@@ -853,16 +853,31 @@ async def load_model_on_startup():
     print("[OK] Running on:", DEVICE)
 
     # ---- MongoDB connect ----
+        # ---- MongoDB connect (SAFE) ----
     if MONGODB_URI:
-        mongo_client = AsyncIOMotorClient(MONGODB_URI)
-        db = mongo_client[MONGODB_DB]
-        reports_col = db[MONGODB_COLLECTION]
+        try:
+            mongo_client = AsyncIOMotorClient(
+                MONGODB_URI,
+                serverSelectionTimeoutMS=8000,
+                connectTimeoutMS=8000,
+                socketTimeoutMS=8000,
+            )
+            db = mongo_client[MONGODB_DB]
+            reports_col = db[MONGODB_COLLECTION]
 
-        await reports_col.create_index("created_at")
-        await reports_col.create_index([("type", 1), ("created_at", -1)])
-        await reports_col.create_index([("prediction", 1), ("created_at", -1)])
+            # Force a connection check (important)
+            await mongo_client.admin.command("ping")
 
-        print("[OK] MongoDB connected:", MONGODB_DB, "/", MONGODB_COLLECTION)
+            # Indexes (safe)
+            await reports_col.create_index("created_at")
+            await reports_col.create_index([("type", 1), ("created_at", -1)])
+            await reports_col.create_index([("prediction", 1), ("created_at", -1)])
+
+            print("[OK] MongoDB connected:", MONGODB_DB, "/", MONGODB_COLLECTION)
+
+        except Exception as e:
+            print(f"[WARN] MongoDB connect/index failed -> reports disabled. Reason: {e}")
+            reports_col = None
     else:
         print("[WARN] MONGODB_URI is empty -> reports will NOT be stored")
 

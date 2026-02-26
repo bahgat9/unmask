@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { GraduationCap } from "lucide-react";
 import PersonCard from "@/components/PersonCard";
-
+import React from "react";
 function FeatureCard({ t, d }: { t: string; d: string }) {
   return (
     <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl glow p-6">
@@ -183,18 +183,18 @@ export default function HomePage() {
             name="Bahgat Yasser"
             role="Developer • Deepfake Detection System"
             org="MSA University — Faculty of Computer Science"
-            img="/team/Bahgat Yasser.jpg"
+            img="/team/Bahgat-Yasser.jpg"
             badge="Student"
             socials={{
               // github: "https://github.com/USERNAME",
-              // linkedin: "https://www.linkedin.com/in/USERNAME/",
+               linkedin: "https://www.linkedin.com/in/USERNAME/",
             }}
           />
           <PersonCard
             name="Awad Sameh"
             role="Developer • Deepfake Detection System"
             org="MSA University — Faculty of Computer Science"
-            img="/team/Awad Sameh.jpg"
+            img="/team/Awad-Sameh.jpg"
             badge="Student"
             socials={{
               // github: "https://github.com/USERNAME",
@@ -232,22 +232,34 @@ export default function HomePage() {
             name="Prof. Tamer Nassef"
             role="Project Supervisor"
             org="MSA University"
-            img="/team/Tamer Nassef.jpg"
+            img="/team/Tamer-Nassef.jpg"
             badge="Supervisor"
+            socials={{
+              // github: "https://github.com/USERNAME",
+               linkedin: "https://www.linkedin.com/in/tamer-m-nassef-3b94b545/",
+            }}
           />
           <PersonCard
             name="Dr. Eman Abo Elhamd"
             role="Project Supervisor"
             org="MSA University"
-            img="/team/eman.jpg"
+            img="/team/Eman-Abo-Elhamd.jpg"
             badge="Supervisor"
+            socials={{
+              // github: "https://github.com/USERNAME",
+               linkedin: "https://www.linkedin.com/in/eman-abo-elhamd-phd-b34bb423/",
+            }}
           />
           <PersonCard
-            name="Dr. Farah Darwish"
+            name="Eng. Farah Darwish"
             role="TA Supervisor"
             org="MSA University"
-            img="/team/farah.jpg"
+            img="/team/Farah-Darwish.jpg"
             badge="TA"
+            socials={{
+              // github: "https://github.com/USERNAME",
+               linkedin: "https://www.linkedin.com/in/farah-darwish-19713b215/",
+            }}
           />
         </div>
 
